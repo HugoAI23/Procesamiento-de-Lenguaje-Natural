@@ -28,3 +28,16 @@ ipykernel
 nbformat
 nbclient
 nbconvert
+
+# Procesamiento de Lenguaje Natural (PLN / NLP)
+nltk
+spacy
+gensim
+textblob
+transformers
+tokenizers
+datasets
+sentence-transformers
+torch
+regex
+tqdm
