@@ -1,0 +1,34 @@
+{
+  "fecha_entrenamiento": "2026-09-13T20:14:29",
+  "filas_entrenamiento_final": 49582,
+  "exactitud_holdout_15pct": 0.8675719279376176,
+  "reporte_holdout": {
+    "negative": {
+      "precision": 0.8578947368421053,
+      "recall": 0.8798920377867746,
+      "f1-score": 0.8687541638907396,
+      "support": 3705.0
+    },
+    "positive": {
+      "precision": 0.8776800439802089,
+      "recall": 0.8553442271631395,
+      "f1-score": 0.866368199701533,
+      "support": 3733.0
+    },
+    "accuracy": 0.8675719279376176,
+    "macro avg": {
+      "precision": 0.867787390411157,
+      "recall": 0.867618132474957,
+      "f1-score": 0.8675611817961363,
+      "support": 7438.0
+    },
+    "weighted avg": {
+      "precision": 0.8678246308386824,
+      "recall": 0.8675719279376176,
+      "f1-score": 0.867556690871338,
+      "support": 7438.0
+    }
+  },
+  "modelo": "MultinomialNB",
+  "vectorizador": "TfidfVectorizer(stop_words=\"english\")"
+}

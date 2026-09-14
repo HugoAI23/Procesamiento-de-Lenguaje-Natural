@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Clasificador de Sentimiento de Reseñas</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}" />
+</head>
+<body>
+    <header class="cabecera">
+        <h1>🎬 Clasificador de Sentimiento de Reseñas</h1>
+        <p class="subtitulo">
+            Escribe una reseña de película en inglés y el modelo te dirá si es
+            positiva o negativa &mdash; y te explicará exactamente cómo llegó a esa conclusión.
+        </p>
+    </header>
+
+    <main class="contenedor">
+        <section class="tarjeta">
+            <label for="resena">Tu reseña</label>
+            <textarea
+                id="resena"
+                rows="6"
+                maxlength="5000"
+                placeholder="Ejemplo: This movie was absolutely wonderful, the acting was superb and the story kept me engaged the whole time..."
+            ></textarea>
+            <div class="fila-contador">
+                <span id="contador">0 / 5000 caracteres</span>
+                <button id="boton-analizar" type="button">Analizar reseña</button>
+            </div>
+            <p id="mensaje-error" class="mensaje-error" hidden></p>
+        </section>
+
+        <section id="resultado" class="tarjeta" hidden>
+            <div class="resultado-cabecera">
+                <span id="badge-sentimiento" class="badge"></span>
+                <span id="texto-confianza" class="confianza"></span>
+            </div>
+
+            <div class="barras-probabilidad">
+                <div class="fila-barra">
+                    <span class="etiqueta-barra">Positiva</span>
+                    <div class="pista-barra">
+                        <div id="barra-positiva" class="barra barra-positiva"></div>
+                    </div>
+                    <span id="valor-positiva" class="valor-barra"></span>
+                </div>
+                <div class="fila-barra">
+                    <span class="etiqueta-barra">Negativa</span>
+                    <div class="pista-barra">
+                        <div id="barra-negativa" class="barra barra-negativa"></div>
+                    </div>
+                    <span id="valor-negativa" class="valor-barra"></span>
+                </div>
+            </div>
+
+            <hr class="separador" />
+
+            <h2>¿Cómo llegamos a esta conclusión?</h2>
+
+            <div class="paso">
+                <span class="numero-paso">1</span>
+                <div>
+                    <h3>Tu reseña se separa en palabras (tokens)</h3>
+                    <p id="resumen-tokens" class="texto-secundario"></p>
+                </div>
+            </div>
+
+            <div class="paso">
+                <span class="numero-paso">2</span>
+                <div>
+                    <h3>Cada palabra se convierte en un número (peso TF-IDF)</h3>
+                    <p class="texto-secundario">
+                        Entre más rara y repetida es una palabra dentro de tu reseña, mayor es su peso.
+                        Pasa el mouse sobre cada palabra para ver su peso exacto.
+                    </p>
+                </div>
+            </div>
+
+            <div class="paso">
+                <span class="numero-paso">3</span>
+                <div>
+                    <h3>El modelo suma el "voto" de cada palabra</h3>
+                    <p class="texto-secundario">
+                        En <span class="chip-leyenda positivo">verde</span> las palabras que empujaron hacia
+                        <strong>positiva</strong>; en <span class="chip-leyenda negativo">rojo</span> las que
+                        empujaron hacia <strong>negativa</strong>. Entre más intenso el color, más peso tuvo esa palabra
+                        en la decisión final.
+                    </p>
+                </div>
+            </div>
+
+            <div id="contenedor-tokens" class="contenedor-tokens"></div>
+        </section>
+    </main>
+
+    <section class="contenedor acordeon">
+        <details>
+            <summary>¿Qué es TF-IDF?</summary>
+            <p>
+                Es una forma de convertir texto en números. Cuenta cuántas veces aparece cada palabra en tu reseña
+                (Term Frequency) y le resta importancia a las palabras que aparecen en casi todas las reseñas del
+                dataset, como "the" o "movie" (Inverse Document Frequency). El resultado: las palabras realmente
+                distintivas de tu reseña ("wonderful", "boring", "masterpiece"...) obtienen un peso mayor.
+            </p>
+        </details>
+        <details>
+            <summary>¿Qué es Naive Bayes?</summary>
+            <p>
+                Es un modelo probabilístico: aprendió, a partir de miles de reseñas ya etiquetadas, qué tan probable
+                es ver cada palabra en una reseña positiva frente a una negativa. Cuando llega tu reseña, multiplica
+                (en realidad suma logaritmos) esas probabilidades para las palabras que reconoce, y elige la clase
+                con la puntuación más alta.
+            </p>
+        </details>
+        <details>
+            <summary>¿Por qué a veces se equivoca?</summary>
+            <p>
+                El modelo solo "entiende" palabras individuales, no el contexto completo. Frases con sarcasmo,
+                negaciones ("not good") o comparaciones complejas pueden confundirlo, porque analiza cada palabra
+                de forma casi independiente.
+            </p>
+        </details>
+    </section>
+
+    <footer class="pie">
+        Proyecto escolar de Procesamiento de Lenguaje Natural &middot; Modelo: TF-IDF + Naive Bayes Multinomial
+    </footer>
+
+    <script src="{{ url_for('static', filename='script.js') }}"></script>
+</body>
+</html>

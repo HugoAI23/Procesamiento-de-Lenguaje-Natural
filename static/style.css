@@ -1,0 +1,297 @@
+:root {
+    --color-fondo: #f4f6f8;
+    --color-tarjeta: #ffffff;
+    --color-texto: #1f2933;
+    --color-texto-secundario: #52606d;
+    --color-borde: #e4e7eb;
+    --color-primario: #2f6fed;
+    --color-positivo: #1f9d55;
+    --color-positivo-suave: #e3f9e5;
+    --color-negativo: #d64545;
+    --color-negativo-suave: #fde8e8;
+    --radio: 12px;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    background: var(--color-fondo);
+    color: var(--color-texto);
+    line-height: 1.5;
+}
+
+.cabecera {
+    text-align: center;
+    padding: 2.5rem 1.5rem 1.5rem;
+}
+
+.cabecera h1 {
+    margin: 0 0 0.5rem;
+    font-size: 1.8rem;
+}
+
+.subtitulo {
+    max-width: 620px;
+    margin: 0 auto;
+    color: var(--color-texto-secundario);
+}
+
+.contenedor {
+    max-width: 720px;
+    margin: 0 auto;
+    padding: 0 1.5rem;
+}
+
+.tarjeta {
+    background: var(--color-tarjeta);
+    border: 1px solid var(--color-borde);
+    border-radius: var(--radio);
+    padding: 1.5rem;
+    margin-bottom: 1.5rem;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.04);
+}
+
+label {
+    font-weight: 600;
+    display: block;
+    margin-bottom: 0.5rem;
+}
+
+textarea {
+    width: 100%;
+    resize: vertical;
+    padding: 0.75rem;
+    border: 1px solid var(--color-borde);
+    border-radius: 8px;
+    font-family: inherit;
+    font-size: 0.95rem;
+}
+
+textarea:focus {
+    outline: 2px solid var(--color-primario);
+    outline-offset: 1px;
+}
+
+.fila-contador {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 0.75rem;
+}
+
+#contador {
+    color: var(--color-texto-secundario);
+    font-size: 0.85rem;
+}
+
+#boton-analizar {
+    background: var(--color-primario);
+    color: white;
+    border: none;
+    padding: 0.65rem 1.4rem;
+    border-radius: 8px;
+    font-size: 0.95rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background 0.15s ease;
+}
+
+#boton-analizar:hover {
+    background: #244fb0;
+}
+
+#boton-analizar:disabled {
+    background: #9aa5b1;
+    cursor: not-allowed;
+}
+
+.mensaje-error {
+    color: var(--color-negativo);
+    margin-top: 0.75rem;
+    font-size: 0.9rem;
+}
+
+.resultado-cabecera {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    flex-wrap: wrap;
+}
+
+.badge {
+    font-size: 1.1rem;
+    font-weight: 700;
+    padding: 0.4rem 1rem;
+    border-radius: 999px;
+}
+
+.badge.positivo {
+    background: var(--color-positivo-suave);
+    color: var(--color-positivo);
+}
+
+.badge.negativo {
+    background: var(--color-negativo-suave);
+    color: var(--color-negativo);
+}
+
+.confianza {
+    color: var(--color-texto-secundario);
+    font-size: 0.9rem;
+}
+
+.barras-probabilidad {
+    margin-top: 1.25rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.6rem;
+}
+
+.fila-barra {
+    display: grid;
+    grid-template-columns: 70px 1fr 55px;
+    align-items: center;
+    gap: 0.75rem;
+}
+
+.etiqueta-barra {
+    font-size: 0.85rem;
+    color: var(--color-texto-secundario);
+}
+
+.pista-barra {
+    background: #eceff1;
+    border-radius: 999px;
+    height: 10px;
+    overflow: hidden;
+}
+
+.barra {
+    height: 100%;
+    width: 0%;
+    border-radius: 999px;
+    transition: width 0.4s ease;
+}
+
+.barra-positiva {
+    background: var(--color-positivo);
+}
+
+.barra-negativa {
+    background: var(--color-negativo);
+}
+
+.valor-barra {
+    font-size: 0.85rem;
+    font-weight: 600;
+    text-align: right;
+}
+
+.separador {
+    border: none;
+    border-top: 1px solid var(--color-borde);
+    margin: 1.5rem 0;
+}
+
+.paso {
+    display: flex;
+    gap: 0.9rem;
+    margin-bottom: 1rem;
+}
+
+.numero-paso {
+    flex-shrink: 0;
+    width: 26px;
+    height: 26px;
+    border-radius: 50%;
+    background: var(--color-primario);
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.8rem;
+    font-weight: 700;
+}
+
+.paso h3 {
+    margin: 0 0 0.25rem;
+    font-size: 0.95rem;
+}
+
+.texto-secundario {
+    margin: 0;
+    color: var(--color-texto-secundario);
+    font-size: 0.88rem;
+}
+
+.chip-leyenda {
+    padding: 0.1rem 0.5rem;
+    border-radius: 6px;
+    font-weight: 600;
+}
+
+.chip-leyenda.positivo {
+    background: var(--color-positivo-suave);
+    color: var(--color-positivo);
+}
+
+.chip-leyenda.negativo {
+    background: var(--color-negativo-suave);
+    color: var(--color-negativo);
+}
+
+.contenedor-tokens {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.4rem;
+    margin-top: 0.5rem;
+}
+
+.token {
+    padding: 0.3rem 0.65rem;
+    border-radius: 999px;
+    font-size: 0.85rem;
+    font-weight: 600;
+    cursor: default;
+    border: 1px solid transparent;
+}
+
+.acordeon {
+    margin-bottom: 2rem;
+}
+
+.acordeon details {
+    background: var(--color-tarjeta);
+    border: 1px solid var(--color-borde);
+    border-radius: 10px;
+    padding: 0.85rem 1rem;
+    margin-bottom: 0.6rem;
+}
+
+.acordeon summary {
+    font-weight: 600;
+    cursor: pointer;
+}
+
+.acordeon p {
+    color: var(--color-texto-secundario);
+    font-size: 0.9rem;
+    margin: 0.6rem 0 0;
+}
+
+.pie {
+    text-align: center;
+    color: var(--color-texto-secundario);
+    font-size: 0.8rem;
+    padding: 1.5rem;
+}
+
+@media (max-width: 480px) {
+    .fila-barra {
+        grid-template-columns: 60px 1fr 45px;
+    }
+}
